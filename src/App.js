@@ -63,7 +63,6 @@ class App extends Component {
         return (
             <Wrapper>
             <Title>Memory Game!</Title>
-            <h3>Click on a different character every time!</h3>
             <h2>Score: {this.state.score}</h2>
             {this.state.pictures.map(picture => {
                 return <ImgCard 
