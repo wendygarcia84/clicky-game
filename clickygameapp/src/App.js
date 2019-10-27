@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import ImgCard from "./components/ImgCard";
 import Wrapper from "./components/Wrapper";
-import pictures from "./pictures.json"
+import Title from "./components/Title"
+import pictures from "./pictures.json";
 
 let guesses = [];
 
@@ -60,7 +61,9 @@ class App extends Component {
         console.log(pictures);
         return (
             <Wrapper>
-            <h1>Score: {this.state.score}</h1>
+            <Title>Memory Game!</Title>
+            <h3>Click on a different character every time!</h3>
+            <h2>Score: {this.state.score}</h2>
             {this.state.pictures.map(picture => {
                 return <ImgCard 
                 name={picture.name} 
