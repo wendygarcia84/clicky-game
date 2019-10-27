@@ -26,6 +26,7 @@ class App extends Component {
        if (guesses.includes(id)) {
            //reset game
            this.setState({score: 0})
+           guesses = []
        } else {
            //increment score
            this.setState({score: this.state.score + 1})
