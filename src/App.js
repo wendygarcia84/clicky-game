@@ -10,7 +10,8 @@ class App extends Component {
 
     state ={
         pictures,
-        score: 0
+        score: 0,
+        highScore: 0
     }
 
     componentDidMount () {
@@ -18,13 +19,17 @@ class App extends Component {
     }
 
     guessedPicture = id => {
-        console.log("This id", id);
-        console.log("guesses", guesses)
         // Filter this.state.friends for friends with an id not equal to the id being removed
         // Set this.state.friends equal to the new friends array
         this.shuffle();
        if (guesses.includes(id)) {
            //reset game
+           console.log("current highscore:", this.state.highScore)
+           console.log("current score:", this.state.highScore)
+           if (this.state.score > this.state.highScore) {
+               this.setState({highScore: this.state.score})
+               console.log("New highscore!", this.state.highScore)
+            }
            this.setState({score: 0})
            guesses = []
        } else {
@@ -37,7 +42,6 @@ class App extends Component {
 
     shuffle = () => {
             let randomPictures = this.state.pictures;
-            console.log("RANDOMIZING PICTURES", randomPictures)
             let currentIndex = randomPictures.length, temporaryValue, randomIndex;
         
             // While there remain elements to shuffle...
@@ -54,16 +58,15 @@ class App extends Component {
             }
         
             this.setState({pictures: randomPictures})
-            console.log("Pictures randomized: ", randomPictures)
         }
       
 
     render() {
-        console.log(pictures);
         return (
             <Wrapper>
             <Title>Memory Game!</Title>
             <h2>Score: {this.state.score}</h2>
+            <h2>High score: {this.state.highScore}</h2>
             {this.state.pictures.map(picture => {
                 return <ImgCard 
                 name={picture.name} 
