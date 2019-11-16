@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import ImgCard from "./components/ImgCard";
 import Wrapper from "./components/Wrapper";
-import Title from "./components/Title"
+import Title from "./components/Title";
 import pictures from "./pictures.json";
+import "./style.css";
 
 let guesses = [];
 
@@ -24,11 +25,8 @@ class App extends Component {
         this.shuffle();
        if (guesses.includes(id)) {
            //reset game
-           console.log("current highscore:", this.state.highScore)
-           console.log("current score:", this.state.highScore)
            if (this.state.score > this.state.highScore) {
                this.setState({highScore: this.state.score})
-               console.log("New highscore!", this.state.highScore)
             }
            this.setState({score: 0})
            guesses = []
@@ -67,6 +65,7 @@ class App extends Component {
             <Title>Memory Game!</Title>
             <h2>Score: {this.state.score}</h2>
             <h2>High score: {this.state.highScore}</h2>
+            <div className="container">
             {this.state.pictures.map(picture => {
                 return <ImgCard 
                 name={picture.name} 
@@ -75,6 +74,7 @@ class App extends Component {
                 key={picture.id}
                 guessedPicture={this.guessedPicture}/>
             })}
+            </div>
             </Wrapper>
         )
     }
